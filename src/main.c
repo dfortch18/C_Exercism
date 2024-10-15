@@ -37,6 +37,21 @@ int main() {
     for (size_t i = 0; i < ARRAY_LENGTH(chess_squares); i++) {
         printf("Grains of square (%I64u): %I64u\n", chess_squares[i], grains_of_square(chess_squares[i]));
     }
+
+    print_separator();
+
+    // Resistor Color
+    const resistor_band_t *all_colors = resistor_band_all_colors();
+
+    for (size_t i = 0; i < resistor_band_num_colors(); i++) {
+        printf("Resistor band color (%s): %d\n", resistor_band_name(all_colors[i]), resistor_band_color_code(all_colors[i]));
+    }
+
+    resistor_band_t resistor_bands[] = {BLACK, BLUE, BROWN,  ORANGE, 56};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(resistor_bands); i++) {
+        printf("Selected resistor band color (%s): %d\n", resistor_band_name(resistor_bands[i]), resistor_band_color_code(resistor_bands[i]));
+    }
 }
 
 void print_separator() {
