@@ -89,6 +89,26 @@ int main()
 
         printf("Attack status of queen_1(%d,%d) queen_2(%d,%d): %s \n", queen_1.row, queen_1.column, queen_2.row, queen_2.column, attack_status_name);
     }
+
+    print_separator();
+
+    darts_target_coordinates_t dart_coordiantes[] = {
+        {0.0F, 0.0F},
+        {1.0F, 1.0F},
+        {3.5F, -2.5F},
+        {10.0F, 5.0F},
+        {6.0F, 8.0F},
+        {-7.0F, -7.0F},
+        {9.5F, -9.5F},
+        {0.5F, 0.5F},
+        {2.0F, -3.0F},
+        {-9.0F, 9.0F}};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(dart_coordiantes); i++)
+    {
+        darts_target_coordinates_t coordinates = dart_coordiantes[i];
+        printf("Coordiantes score for (%f,%f): %d\n", coordinates.x, coordinates.y, darts_score(coordinates));
+    }
 }
 
 void print_separator()
