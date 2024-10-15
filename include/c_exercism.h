@@ -7,5 +7,6 @@
 #include "c_exercism/grains.h"
 #include "c_exercism/resistor_color.h"
 #include "c_exercism/collatz_conjecture.h"
+#include "c_exercism/queen_attack.h"
 
 #endif

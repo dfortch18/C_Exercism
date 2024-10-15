@@ -68,6 +68,27 @@ int main()
     {
         printf("Collatz conjecture steps for (%d): %d\n", collatz_conjecture_values[i], collatz_conjecture_steps(collatz_conjecture_values[i]));
     }
+
+    print_separator();
+
+    // Queen Attack
+    queen_position_t queen_positions[][2] = {
+        {{0, 0}, {0, 3}},
+        {{3, 6}, {4, 6}},
+        {{2, 4}, {4, 6}},
+        {{3, 2}, {7, 0}},
+        {{2, 5}, {5, 3}},
+        {{9, 2}, {5, 4}}};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(queen_positions); i++)
+    {
+        queen_position_t queen_1 = queen_positions[i][0];
+        queen_position_t queen_2 = queen_positions[i][1];
+        queen_attack_status_t attack_status = queen_can_attack(queen_1, queen_2);
+        const char *attack_status_name = queen_attack_status_name(attack_status);
+
+        printf("Attack status of queen_1(%d,%d) queen_2(%d,%d): %s \n", queen_1.row, queen_1.column, queen_2.row, queen_2.column, attack_status_name);
+    }
 }
 
 void print_separator()
