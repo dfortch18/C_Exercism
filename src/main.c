@@ -52,6 +52,15 @@ int main() {
     for (size_t i = 0; i < ARRAY_LENGTH(resistor_bands); i++) {
         printf("Selected resistor band color (%s): %d\n", resistor_band_name(resistor_bands[i]), resistor_band_color_code(resistor_bands[i]));
     }
+
+    print_separator();
+
+    // Collatz Conjecture
+    size_t collatz_conjecture_values[] = {1, 16, 12, 1000000, -12, -100, 0};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(collatz_conjecture_values); i++) {
+        printf("Collatz conjecture steps for (%d): %d\n", collatz_conjecture_values[i], collatz_conjecture_steps(collatz_conjecture_values[i]));
+    }
 }
 
 void print_separator() {
