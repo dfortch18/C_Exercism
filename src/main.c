@@ -126,6 +126,26 @@ int main()
         uint16_t color_code = resistor_duo_band_color_code(resistor_duo_arr[i]);
         printf("Resistor color duo (%s,%s): %d\n", band_name_1, band_name_2, color_code);
     }
+
+    print_separator();
+
+    // Hamming
+    const char *hamming_input_arr[][2] = {
+        {"GAGCCTACTAACGGGAT", "CATCGTAATGACGGCCT"},
+        {"GGACTGAAATCTG", "GGACTGAAATCTG"},
+        {"GGACGGATTCTG", "AGGACGGATTCT"},
+        {"AATG", "AAA"},
+        {"ATA", "AGTG"},
+        {"G", ""}
+    };
+
+    for (size_t i = 0; i < ARRAY_LENGTH(hamming_input_arr); i++)
+    {
+        const char *lhs = hamming_input_arr[i][0];
+        const char *rhs = hamming_input_arr[i][1];
+        printf("Hamming Distance (%s, %s): %d\n", lhs, rhs, hamming_compute(lhs, rhs));
+    }
+    
 }
 
 void print_separator()
