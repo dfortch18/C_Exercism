@@ -109,6 +109,23 @@ int main()
         darts_target_coordinates_t coordinates = dart_coordiantes[i];
         printf("Coordiantes score for (%f,%f): %d\n", coordinates.x, coordinates.y, darts_score(coordinates));
     }
+
+    print_separator();
+
+    // Resistor Color Duo
+    resistor_duo_band_t resistor_duo_arr[][2] = {
+        {DUO_BLACK, DUO_GREEN},
+        {DUO_BROWN, DUO_BLACK},
+        {DUO_BLACK, DUO_WHITE},
+        {DUO_ORANGE, DUO_BLUE}};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(resistor_duo_arr); i++)
+    {
+        const char *band_name_1 = resistor_duo_band_name(resistor_duo_arr[i][0]);
+        const char *band_name_2 = resistor_duo_band_name(resistor_duo_arr[i][1]);
+        uint16_t color_code = resistor_duo_band_color_code(resistor_duo_arr[i]);
+        printf("Resistor color duo (%s,%s): %d\n", band_name_1, band_name_2, color_code);
+    }
 }
 
 void print_separator()

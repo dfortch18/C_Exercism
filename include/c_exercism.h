@@ -9,5 +9,6 @@
 #include "c_exercism/collatz_conjecture.h"
 #include "c_exercism/queen_attack.h"
 #include "c_exercism/darts.h"
+#include "c_exercism/resistor_color_duo.h"
 
 #endif
