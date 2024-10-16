@@ -11,5 +11,6 @@
 #include "c_exercism/darts.h"
 #include "c_exercism/resistor_color_duo.h"
 #include "c_exercism/hamming.h"
+#include "c_exercism/space_age.h"
 
 #endif

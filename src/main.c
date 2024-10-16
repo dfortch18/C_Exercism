@@ -136,14 +136,45 @@ int main()
         {"GGACGGATTCTG", "AGGACGGATTCT"},
         {"AATG", "AAA"},
         {"ATA", "AGTG"},
-        {"G", ""}
-    };
+        {"G", ""}};
 
     for (size_t i = 0; i < ARRAY_LENGTH(hamming_input_arr); i++)
     {
         const char *lhs = hamming_input_arr[i][0];
         const char *rhs = hamming_input_arr[i][1];
         printf("Hamming Distance (%s, %s): %d\n", lhs, rhs, hamming_compute(lhs, rhs));
+    }
+
+    print_separator();
+
+    // Space Age
+    space_age_planet_t space_age__planets[9] = {
+        SPACE_AGE_PLANET_EARTH,
+        SPACE_AGE_PLANET_MERCURY,
+        SPACE_AGE_PLANET_VENUS,
+        SPACE_AGE_PLANET_MARS,
+        SPACE_AGE_PLANET_JUPITER,
+        SPACE_AGE_PLANET_SATURN,
+        SPACE_AGE_PLANET_URANUS,
+        SPACE_AGE_PLANET_NEPTUNE,
+        (space_age_planet_t)-1};
+
+    int64_t space_age__seconds[9] = {
+        1000000000,
+        2134835688,
+        189839836,
+        2129871239,
+        901876382,
+        2000000000,
+        1210123456,
+        1821023456,
+        680804807};
+
+    for (size_t i = 0; i < 9; i++)
+    {
+        space_age_planet_t planet = space_age__planets[i];
+        int64_t seconds = space_age__seconds[i];
+        printf("Space Age (%s,%I64u): %f\n", space_age_planet_name(planet), seconds, space_age(planet, seconds));
     }
     
 }
