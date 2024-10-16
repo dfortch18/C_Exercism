@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "c_exercism.h"
 
 #define ARRAY_LENGTH(arr) sizeof(arr) / sizeof(arr[0])
@@ -175,6 +176,18 @@ int main()
         space_age_planet_t planet = space_age__planets[i];
         int64_t seconds = space_age__seconds[i];
         printf("Space Age (%s,%I64u): %f\n", space_age_planet_name(planet), seconds, space_age(planet, seconds));
+    }
+
+    print_separator();
+
+    const char *rna_transcription_inputs[] = {"", "C", "G", "T", "A", "ACGTGGTCTTAA"};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(rna_transcription_inputs); i++)
+    {
+        const char *adn = rna_transcription_inputs[i];
+        char *rna = rna_transcription_to_rna(adn);
+        printf("Rna transcription of (%s): %s\n", adn, rna);
+        free(rna);
     }
     
 }
