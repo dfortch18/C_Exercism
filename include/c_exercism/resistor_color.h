@@ -3,7 +3,7 @@
 
 #include <stddef.h>
 
-typedef enum
+typedef enum resistor_band
 {
     BLACK,
     BROWN,

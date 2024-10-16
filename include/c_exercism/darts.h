@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-typedef struct
+typedef struct darts_target_coordinates
 {
     float x;
     float y;

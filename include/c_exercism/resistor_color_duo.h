@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-typedef enum
+typedef enum resistor_duo_band
 {
     DUO_BLACK,
     DUO_BROWN,

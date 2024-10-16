@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-typedef enum
+typedef enum queen_attack_status
 {
     CAN_NOT_ATTACK,
     CAN_ATTACK,
