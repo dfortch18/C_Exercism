@@ -189,6 +189,31 @@ int main()
         printf("Rna transcription of (%s): %s\n", adn, rna);
         free(rna);
     }
+
+    print_separator();
+
+    // Binary convert
+    const char *binaries[] = {
+        "0",
+        "1",
+        "10",
+        "11",
+        "100",
+        "1001",
+        "11010",
+        "10001101000",
+        "000011111",
+        "2",
+        "01201",
+        "10nope",
+        "nope10",
+        "10nope10",
+        "001 nope"};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(binaries); i++)
+    {
+        printf("Decimal equivalent of binary (%s): %d\n", binaries[i], binary_convert(binaries[i]));
+    }
     
 }
 
