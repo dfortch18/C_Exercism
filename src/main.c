@@ -215,6 +215,17 @@ int main()
         printf("Decimal equivalent of binary (%s): %d\n", binaries[i], binary_convert(binaries[i]));
     }
     
+    print_separator();
+
+    // Eliuds Eggs
+    size_t eliuds_eggs_decimals[] = {0, 16, 89, 2000000000};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(eliuds_eggs_decimals); i++)
+    {
+        size_t decimal = eliuds_eggs_decimals[i];
+        printf("Eliuds Eggs (%d): %d\n", decimal, eliuds_eggs_egg_count(decimal));
+    }
+    
 }
 
 void print_separator()

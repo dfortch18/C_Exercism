@@ -14,5 +14,6 @@
 #include "c_exercism/space_age.h"
 #include "c_exercism/rna_transcription.h"
 #include "c_exercism/binary.h"
+#include "c_exercism/eliuds_eggs.h"
 
 #endif
