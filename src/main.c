@@ -250,6 +250,21 @@ int main()
         printf("Raindrops (%d): %s\n", raindrops_drops[i], result);
     }
 
+    print_separator();
+
+    // D&D Character
+    int dnd_character_modifiers[] = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+    dnd_character_t character = make_dnd_character();
+
+    for (size_t i = 0; i < ARRAY_LENGTH(dnd_character_modifiers); i++)
+    {
+        printf("Dnd character score (%d): %d\n", dnd_character_modifiers[i], dnd_character_modifier(dnd_character_modifiers[i]));
+    }
+
+    printf("Dnd character random ability: %d\n", dnd_character_ability());
+
+    print_dnd_character(&character);
+    
 }
 
 void print_separator()

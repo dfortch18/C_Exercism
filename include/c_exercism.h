@@ -17,5 +17,6 @@
 #include "c_exercism/eliuds_eggs.h"
 #include "c_exercism/two_fer.h"
 #include "c_exercism/raindrops.h"
+#include "c_exercism/dnd_character.h"
 
 #endif
