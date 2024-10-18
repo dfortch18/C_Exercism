@@ -226,6 +226,18 @@ int main()
         printf("Eliuds Eggs (%d): %d\n", decimal, eliuds_eggs_egg_count(decimal));
     }
     
+    print_separator();
+
+    // Two Fer
+    const char *two_fer_names[] = {"Alice", "Bob", NULL};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(two_fer_names); i++)
+    {
+        char buffer[100];
+        two_fer(buffer, two_fer_names[i]);
+        printf("Two fer for (%s): %s\n", two_fer_names[i], buffer);
+    }
+    
 }
 
 void print_separator()
