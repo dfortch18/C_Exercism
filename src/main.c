@@ -265,6 +265,18 @@ int main()
 
     print_dnd_character(&character);
     
+    print_separator();
+
+    // Perfect Numbers
+    size_t perfect_numbers_inputs[] = {6, 28, 33550336, 12, 30, 33550335, 2, 4, 32, 33550337, 1};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(perfect_numbers_inputs); i++)
+    {
+        size_t number = perfect_numbers_inputs[i];
+        perfect_numbers_kind_t kind = perfect_numbers_classify_number(number);
+        printf("Perfect number classification for (%d): %s\n", number, perfect_numbers_kind_name(kind));
+    }
+    
 }
 
 void print_separator()
