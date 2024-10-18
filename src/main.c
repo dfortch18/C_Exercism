@@ -238,6 +238,18 @@ int main()
         printf("Two fer for (%s): %s\n", two_fer_names[i], buffer);
     }
     
+    print_separator();
+
+    // Raindrops
+    int raindrops_drops[] = {1, 3, 5, 7, 6, 8, 9, 10, 15, 21, 25, 35, 39};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(raindrops_drops); i++)
+    {
+        char result[16] = { 0 };
+        raindrops_convert(result, raindrops_drops[i]);
+        printf("Raindrops (%d): %s\n", raindrops_drops[i], result);
+    }
+
 }
 
 void print_separator()

@@ -16,5 +16,6 @@
 #include "c_exercism/binary.h"
 #include "c_exercism/eliuds_eggs.h"
 #include "c_exercism/two_fer.h"
+#include "c_exercism/raindrops.h"
 
 #endif
