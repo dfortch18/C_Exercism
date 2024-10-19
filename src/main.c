@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "c_exercism.h"
 
-#define ARRAY_LENGTH(arr) sizeof(arr) / sizeof(arr[0])
+#define ARRAY_LENGTH(arr) sizeof(arr) / sizeof((arr)[0])
 
 void print_separator();
 
