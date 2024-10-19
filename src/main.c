@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "c_exercism.h"
 
 #define ARRAY_LENGTH(arr) sizeof(arr) / sizeof((arr)[0])
@@ -306,6 +307,42 @@ int main()
     for (size_t i = 0; i < ARRAY_LENGTH(pangram_sentences); i++)
     {
         printf("Sentence ('%s') is pangram: %s\n", pangram_sentences[i], is_pangram(pangram_sentences[i]) ? "true" : "false");
+    }
+
+    print_separator();
+
+    // Resistor Color Trio
+    resistor_trio_band_t resistor_trio_bands[][3] = {
+        {TRIO_ORANGE, TRIO_ORANGE, TRIO_BLACK},
+        {TRIO_BLUE, TRIO_GREY, TRIO_BROWN},
+        {TRIO_RED, TRIO_BLACK, TRIO_RED},
+        {TRIO_GREEN, TRIO_BROWN, TRIO_ORANGE},
+        {TRIO_YELLOW, TRIO_VIOLET, TRIO_YELLOW},
+        {TRIO_BLUE, TRIO_VIOLET, TRIO_BLUE},
+        {TRIO_BLACK, TRIO_BLACK, TRIO_BLACK},
+        {TRIO_WHITE, TRIO_WHITE, TRIO_WHITE},
+        {TRIO_BLACK, TRIO_GREY, TRIO_BLACK},
+        {TRIO_BLUE, TRIO_GREEN, TRIO_YELLOW},
+        {TRIO_BLACK, TRIO_BLACK, -1}};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(resistor_trio_bands); i++)
+    {
+        size_t bands_len = ARRAY_LENGTH(resistor_trio_bands[i]);
+        resistor_trio_value_t value = resistor_trio_band_color_code(resistor_trio_bands[i], bands_len);
+        char bands[100] = "";
+
+        for (size_t j = 0; j < bands_len; j++)
+        {
+            strcat(bands, resistor_trio_band_name(resistor_trio_bands[i][j]));
+            if (j < bands_len - 1)
+            {
+                strcat(bands, ",");
+            }
+        }
+
+        const char *unit_name = resistor_trio_ohms_unit_name(value.unit);
+
+        printf("Resistor trio value for (%s): value = %d, unit = %s\n", bands, value.value, unit_name);
     }
 }
 

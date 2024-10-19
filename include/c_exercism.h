@@ -21,5 +21,6 @@
 #include "c_exercism/perfect_numbers.h"
 #include "c_exercism/high_scores.h"
 #include "c_exercism/pangram.h"
+#include "c_exercism/resistor_color_trio.h"
 
 #endif
