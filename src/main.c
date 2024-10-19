@@ -355,6 +355,30 @@ int main()
         int candidate = armstrong_number_candidates[i];
         printf("Is armstrong number (%d): %s\n", candidate, is_armstrong_number(candidate) ? "true" : "false");
     }
+
+    print_separator();
+
+    // Isogram
+    char *isogram_candidates[] = {
+        "isogram",
+        "eleven",
+        "zzyzx",
+        "subdermatoglyphic",
+        "Alphabet",
+        "alphAbet",
+        "thumbscrew-japingly",
+        "thumbscrew-jappingly",
+        "six-year-old",
+        "Emily Jung Schwartzkopf",
+        "accentor",
+        "angola",
+        "up-to-date"};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(isogram_candidates); i++)
+    {
+        char *candidate = isogram_candidates[i];
+        printf("Is isogram (%s): %s\n", candidate, is_isogram(candidate) ? "true" : "false");
+    }
     
 }
 
