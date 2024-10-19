@@ -344,6 +344,18 @@ int main()
 
         printf("Resistor trio value for (%s): value = %d, unit = %s\n", bands, value.value, unit_name);
     }
+
+    print_separator();
+
+    // Armstrong numbers
+    int armstrong_number_candidates[] = {0, 5, 10, 153, 100, 9474, 9475, 9926315, 9926314};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(armstrong_number_candidates); i++)
+    {
+        int candidate = armstrong_number_candidates[i];
+        printf("Is armstrong number (%d): %s\n", candidate, is_armstrong_number(candidate) ? "true" : "false");
+    }
+    
 }
 
 void print_separator()

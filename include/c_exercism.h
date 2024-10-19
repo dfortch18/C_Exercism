@@ -22,5 +22,6 @@
 #include "c_exercism/high_scores.h"
 #include "c_exercism/pangram.h"
 #include "c_exercism/resistor_color_trio.h"
+#include "c_exercism/armstrong_numbers.h"
 
 #endif
