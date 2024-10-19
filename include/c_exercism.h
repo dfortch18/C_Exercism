@@ -20,5 +20,6 @@
 #include "c_exercism/dnd_character.h"
 #include "c_exercism/perfect_numbers.h"
 #include "c_exercism/high_scores.h"
+#include "c_exercism/pangram.h"
 
 #endif

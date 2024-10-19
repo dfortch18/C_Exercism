@@ -288,7 +288,25 @@ int main()
     printf("Personal best: %d\n", high_scores_personal_best(high_scores_list, high_score_len));
     printf("Latest score: %d\n", high_scores_latest(high_scores_list, high_score_len));
     printf("Top n: %d\n", top_n);
-    
+
+    print_separator();
+
+    // Pangram
+    const char *pangram_sentences[] = {
+        "abcdefghijklmnopqrstuvwxyz",
+        "the quick brown fox jumps over the lazy dog",
+        "a quick movement of the enemy will jeopardize five gunboats",
+        "five boxing wizards jump quickly at it",
+        "the_quick_brown_fox_jumps_over_the_lazy_dog",
+        "the 1 quick brown fox jumps over the 2 lazy dogs",
+        "7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog",
+        "\"Five quacking Zephyrs jolt my wax bed.\"",
+        "abcdefghijklm ABCDEFGHIJKLM"};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(pangram_sentences); i++)
+    {
+        printf("Sentence ('%s') is pangram: %s\n", pangram_sentences[i], is_pangram(pangram_sentences[i]) ? "true" : "false");
+    }
 }
 
 void print_separator()
