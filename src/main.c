@@ -214,7 +214,7 @@ int main()
     {
         printf("Decimal equivalent of binary (%s): %d\n", binaries[i], binary_convert(binaries[i]));
     }
-    
+
     print_separator();
 
     // Eliuds Eggs
@@ -225,7 +225,7 @@ int main()
         size_t decimal = eliuds_eggs_decimals[i];
         printf("Eliuds Eggs (%d): %d\n", decimal, eliuds_eggs_egg_count(decimal));
     }
-    
+
     print_separator();
 
     // Two Fer
@@ -237,7 +237,7 @@ int main()
         two_fer(buffer, two_fer_names[i]);
         printf("Two fer for (%s): %s\n", two_fer_names[i], buffer);
     }
-    
+
     print_separator();
 
     // Raindrops
@@ -245,7 +245,7 @@ int main()
 
     for (size_t i = 0; i < ARRAY_LENGTH(raindrops_drops); i++)
     {
-        char result[16] = { 0 };
+        char result[16] = {0};
         raindrops_convert(result, raindrops_drops[i]);
         printf("Raindrops (%d): %s\n", raindrops_drops[i], result);
     }
@@ -264,7 +264,7 @@ int main()
     printf("Dnd character random ability: %d\n", dnd_character_ability());
 
     print_dnd_character(&character);
-    
+
     print_separator();
 
     // Perfect Numbers
@@ -276,6 +276,18 @@ int main()
         perfect_numbers_kind_t kind = perfect_numbers_classify_number(number);
         printf("Perfect number classification for (%d): %s\n", number, perfect_numbers_kind_name(kind));
     }
+
+    print_separator();
+
+    // High Scores
+    int32_t high_scores_list[] = {10, 30, 90, 30, 100, 20, 10, 0, 30, 40, 40, 70};
+    size_t high_score_len = ARRAY_LENGTH(high_scores_list);
+    int32_t top[3] = {0, 0, 0};
+    size_t top_n = high_scores_personal_top_three(high_scores_list, high_score_len, top);
+    printf("Top 3: 1. %d; 2. %d; 3. %d\n", top[0], top[1], top[2]);
+    printf("Personal best: %d\n", high_scores_personal_best(high_scores_list, high_score_len));
+    printf("Latest score: %d\n", high_scores_latest(high_scores_list, high_score_len));
+    printf("Top n: %d\n", top_n);
     
 }
 
