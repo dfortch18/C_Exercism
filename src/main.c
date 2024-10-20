@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "c_exercism.h"
 
 #define ARRAY_LENGTH(arr) sizeof(arr) / sizeof((arr)[0])
@@ -560,6 +561,108 @@ int main()
         printf("Total allergens: %d\n", list.count);
     }
     
+    print_separator();
+
+    // Complex numbers
+    complex_t complex_real_inputs[] = {{1.0, 0.0}, {0.0, 1.0}, {1.0, 2.0}};
+    complex_t complex_imag_inputs[] = {{1.0, 0.0}, {0.0, 1.0}, {1.0, 2.0}};
+    complex_t complex_add_inputs[][2] = {
+        {{1.0, 0.0}, {2.0, 0.0}},
+        {{0.0, 1.0}, {0.0, 2.0}},
+        {{1.0, 2.0}, {3.0, 4.0}},
+        {{1.0, 2.0}, {5.0, 0.0}},
+        {{5.0, 0.0}, {1.0, 2.0}}
+    };
+    complex_t complex_sub_inputs[][2] = {
+        {{1.0, 0.0}, {2.0, 0.0}},
+        {{0.0, 1.0}, {0.0, 2.0}},
+        {{1.0, 2.0}, {3.0, 4.0}},
+        {{5.0, 7.0}, {4.0, 0.0}},
+        {{4.0, 0.0}, {5.0, 7.0}}
+    };
+    complex_t complex_mul_inputs[][2] = {
+        {{1.0, 2.0}, {1.0, 2.0}},
+        {{0.0, 1.0}, {0.0, 1.0}},
+        {{0.0, 1.0}, {0.0, 2.0}},
+        {{1.0, 2.0}, {3.0, 4.0}},
+        {{2.0, 5.0}, {5.0, 0.0}},
+        {{5.0, 0.0}, {2.0, 5.0}}
+    };
+    complex_t complex_div_inputs[][2] = {
+        {{1.0, 0.0}, {2.0, 0.0}},
+        {{0.0, 1.0}, {0.0, 2.0}},
+        {{1.0, 2.0}, {3.0, 4.0}},
+        {{1.0, 100.0}, {10.0, 0.0}},
+        {{5.0, 0.0}, {1.0, 1.0}}
+    };
+    complex_t complex_abs_inputs[] = {{5.0, 0.0}, {-5.0, 0.0}, {0.0, 5.0}, {0.0, -5.0}, {3.0, 4.0}};
+    complex_t complex_conjugate_inputs[] = {{5.0, 0.0}, {0.0, 5.0}, {1.0, 1.0}};
+    complex_t complex_exp_inputs[] = {{0.0, 0.0}, {1.0, 0.0}, {log(2.0) / 2.0, acos(-1)}, {log(2.0) / 2.0, acos(-1) / 4.0}};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_real_inputs); i++)
+    {
+        complex_t complex = complex_real_inputs[i];
+        printf("Real part of (%3.2f,%3.2f): %3.2f\n", complex.real, complex.imag, complex_real(complex));
+    }
+    
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_imag_inputs); i++)
+    {
+        complex_t complex = complex_imag_inputs[i];
+        printf("Imaginary part of (%3.2f,%3.2f): %3.2f\n", complex.real, complex.imag, complex_imag(complex));
+    }
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_add_inputs); i++)
+    {
+        complex_t complex1 = complex_add_inputs[i][0];
+        complex_t complex2 = complex_add_inputs[i][1];
+        complex_t result = complex_add(complex1, complex2);
+        printf("Sum of (%3.2f,%3.2f) and (%3.2f,%3.2f): (%3.2f,%3.2f)\n", complex1.real, complex1.imag, complex2.real, complex2.imag, result.real, result.imag);
+    }
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_sub_inputs); i++)
+    {
+        complex_t complex1 = complex_sub_inputs[i][0];
+        complex_t complex2 = complex_sub_inputs[i][1];
+        complex_t result = complex_sub(complex1, complex2);
+        printf("Subtract of (%3.2f,%3.2f) and (%3.2f,%3.2f): (%3.2f,%3.2f)\n", complex1.real, complex1.imag, complex2.real, complex2.imag, result.real, result.imag);
+    }
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_mul_inputs); i++)
+    {
+        complex_t complex1 = complex_mul_inputs[i][0];
+        complex_t complex2 = complex_mul_inputs[i][1];
+        complex_t result = complex_mul(complex1, complex2);
+        printf("Multiplication of (%3.2f,%3.2f) and (%3.2f,%3.2f): (%3.2f,%3.2f)\n", complex1.real, complex1.imag, complex2.real, complex2.imag, result.real, result.imag);
+    }
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_div_inputs); i++)
+    {
+        complex_t complex1 = complex_div_inputs[i][0];
+        complex_t complex2 = complex_div_inputs[i][1];
+        complex_t result = complex_div(complex1, complex2);
+        printf("Division of (%3.2f,%3.2f) and (%3.2f,%3.2f): (%3.2f,%3.2f)\n", complex1.real, complex1.imag, complex2.real, complex2.imag, result.real, result.imag);
+    }
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_abs_inputs); i++)
+    {
+        complex_t complex = complex_abs_inputs[i];
+        printf("Abs of (%3.2f,%3.2f): %3.2f\n", complex.real, complex.imag, complex_abs(complex));
+    }
+    
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_conjugate_inputs); i++)
+    {
+        complex_t complex = complex_conjugate_inputs[i];
+        complex_t result = complex_conjugate(complex);
+        printf("Conjugate of (%3.2f,%3.2f): (%3.2f,%3.2f)\n", complex.real, complex.imag, result.real, result.imag);
+    }
+
+    for (size_t i = 0; i < ARRAY_LENGTH(complex_exp_inputs); i++)
+    {
+        complex_t complex = complex_exp_inputs[i];
+        complex_t result = complex_exp(complex);
+        printf("Exp of (%3.2f,%3.2f): (%3.2f,%3.2f)\n", complex.real, complex.imag, result.real, result.imag);
+    }
 }
 
 void print_separator()
