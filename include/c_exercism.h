@@ -25,5 +25,6 @@
 #include "c_exercism/armstrong_numbers.h"
 #include "c_exercism/isogram.h"
 #include "c_exercism/robot_simulator.h"
+#include "c_exercism/gigasecond.h"
 
 #endif

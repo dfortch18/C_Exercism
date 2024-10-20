@@ -7,6 +7,10 @@
 
 void print_separator();
 
+static inline time_t days_from_1ad(int);
+
+static time_t construct_date(int, int, int, int, int, int);
+
 int main()
 {
     // Print hello world
@@ -379,7 +383,7 @@ int main()
         char *candidate = isogram_candidates[i];
         printf("Is isogram (%s): %s\n", candidate, is_isogram(candidate) ? "true" : "false");
     }
-    
+
     print_separator();
 
     // Robot Simulator
@@ -388,22 +392,19 @@ int main()
         ROBOT_SIMULATOR_DIRECTION_SOUTH,
         ROBOT_SIMULATOR_DIRECTION_WEST,
         ROBOT_SIMULATOR_DIRECTION_EAST,
-        ROBOT_SIMULATOR_DIRECTION_NORTH
-    };
+        ROBOT_SIMULATOR_DIRECTION_NORTH};
     int robot_simulator_positions[5][2] = {
         {9, 4},
         {-4, 1},
         {-3, -8},
         {11, 5},
-        {8, 4}
-    };
+        {8, 4}};
     const char *robot_simulator_commands[5] = {
         "R",
         "R",
         "RAALAL",
         "RAALAL",
-        "LAAARALA"
-    };
+        "LAAARALA"};
 
     for (size_t i = 0; i < 5; i++)
     {
@@ -423,10 +424,60 @@ int main()
 
         printf("Robot simulator moved: direction = %s, position = (%d,%d)\n", actual_direction_name, robot.position.x, robot.position.y);
     }
-    
+
+    print_separator();
+
+    const time_t gigasecond_dates[] = {
+        construct_date(2011, 4, 25, 0, 0, 0),
+        construct_date(1977, 6, 13, 0, 0, 0),
+        construct_date(1959, 7, 19, 0, 0, 0),
+        construct_date(2015, 1, 24, 22, 0, 0),
+        construct_date(2015, 1, 24, 23, 59, 59)};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(gigasecond_dates); i++)
+    {
+        char date_formatted[GIGASECOND_DATE_FORMATTED_BUFFER_SIZE] = {0};
+
+        struct tm *initial_time = localtime(&gigasecond_dates[i]);
+        if (initial_time != NULL)
+        {
+            strftime(date_formatted, sizeof(date_formatted), GIGASECOND_DATE_FORMAT, initial_time);
+        }
+        else
+        {
+            snprintf(date_formatted, sizeof(date_formatted), "Invalid time");
+        }
+
+        char output[GIGASECOND_DATE_FORMATTED_BUFFER_SIZE] = {0};
+
+        gigasecond(gigasecond_dates[i], output, sizeof(output));
+
+        printf("Gigasecond after (%s): %s\n", date_formatted, output);
+    }
 }
 
 void print_separator()
 {
     puts("-------------------------------------------------------");
+}
+
+static inline time_t days_from_1ad(int year)
+{
+    --year;
+    return 365 * year + (year / 400) - (year / 100) + (year / 4);
+}
+
+static time_t construct_date(int year, int month, int day, int hour, int min, int sec)
+{
+    static const time_t seconds_in_day = 86400;
+    static const time_t days[2][12] = {
+        {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334},
+        {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335}
+    };
+
+    time_t days_since_epoch = (days_from_1ad(year) - days_from_1ad(1970)) + days[is_leap_year(year)][(month - 1)] + (day - 1);
+
+    time_t result = (seconds_in_day * days_since_epoch) + (60 * ((hour * 60) + min) + sec);
+    
+    return result;
 }
