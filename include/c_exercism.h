@@ -27,5 +27,7 @@
 #include "c_exercism/robot_simulator.h"
 #include "c_exercism/gigasecond.h"
 #include "c_exercism/triangle.h"
+#include "c_exercism/luhn.h"
+#include "c_exercism/allergies.h"
 
 #endif

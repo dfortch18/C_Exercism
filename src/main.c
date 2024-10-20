@@ -507,6 +507,58 @@ int main()
         }
         printf("Is triangle %s (%f, %f, %f): %s\n", triangle_type, triangle.a, triangle.b, triangle.c, triangle_checker(triangle) ? "true" : "false");
     }
+
+    print_separator();
+
+    // Luhn
+    const char *luhn_candidates[] = {
+        "1",
+        "0",
+        "059",
+        "59",
+        "055 444 285",
+        "055 444 286",
+        "8273 1232 7352 0569",
+        "1 2345 6789 1234 5678 9012",
+        "1 2345 6789 1234 5678 9013",
+        "095 245 88",
+        "234 567 891 234",
+        "059a",
+        "055-444-285",
+        "055£ 444$ 285",
+        " 0",
+        "0000 0",
+        "091",
+        "9999999999 9999999999 9999999999 9999999999",
+        "109",
+        "055b 444 285",
+        ":9",
+        "59%59"};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(luhn_candidates); i++)
+    {
+        printf("Is valid luhn (%s): %s\n", luhn_candidates[i], luhn(luhn_candidates[i]) ? "true" : "false");
+    }
+
+    print_separator();
+
+    // Allergies
+    size_t allergens_scores[] = {0, 1, 2, 8, 3, 5, 248, 255, 509, 257};
+    const allergen_t *all_allergens = get_all_allergens();
+
+    for (size_t i = 0; i < ARRAY_LENGTH(allergens_scores); i++)
+    {
+        int score = allergens_scores[i];
+        allergen_list_t list = get_allergens_for(score);
+
+        for (size_t i = 0; i < ALLERGEN_COUNT; i++)
+        {
+            allergen_t allergen = all_allergens[i];
+
+            printf("Is allergic for %s (%d): %s\n", get_allergen_name(allergen), score, list.allergens[allergen] ? "true" : "false");
+        }
+        printf("Total allergens: %d\n", list.count);
+    }
     
 }
 
