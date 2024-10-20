@@ -24,5 +24,6 @@
 #include "c_exercism/resistor_color_trio.h"
 #include "c_exercism/armstrong_numbers.h"
 #include "c_exercism/isogram.h"
+#include "c_exercism/robot_simulator.h"
 
 #endif

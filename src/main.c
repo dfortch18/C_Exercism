@@ -380,6 +380,50 @@ int main()
         printf("Is isogram (%s): %s\n", candidate, is_isogram(candidate) ? "true" : "false");
     }
     
+    print_separator();
+
+    // Robot Simulator
+    robot_simulator_direction_t robot_simulator_directions[5] = {
+        ROBOT_SIMULATOR_DIRECTION_DEFAULT,
+        ROBOT_SIMULATOR_DIRECTION_SOUTH,
+        ROBOT_SIMULATOR_DIRECTION_WEST,
+        ROBOT_SIMULATOR_DIRECTION_EAST,
+        ROBOT_SIMULATOR_DIRECTION_NORTH
+    };
+    int robot_simulator_positions[5][2] = {
+        {9, 4},
+        {-4, 1},
+        {-3, -8},
+        {11, 5},
+        {8, 4}
+    };
+    const char *robot_simulator_commands[5] = {
+        "R",
+        "R",
+        "RAALAL",
+        "RAALAL",
+        "LAAARALA"
+    };
+
+    for (size_t i = 0; i < 5; i++)
+    {
+        robot_simulator_direction_t direction = robot_simulator_directions[i];
+        int *positions = robot_simulator_positions[i];
+        const char *commands = robot_simulator_commands[i];
+
+        robot_simulator_status_t robot = robot_simulator_create(direction, positions[0], positions[1]);
+
+        const char *created_direction_name = robot_simulator_direction_name(robot.direction);
+
+        printf("Robot simulator created: direction = %s, position = (%d,%d)\n", created_direction_name, robot.position.x, robot.position.y);
+
+        robot_simulator_move(&robot, commands);
+
+        const char *actual_direction_name = robot_simulator_direction_name(robot.direction);
+
+        printf("Robot simulator moved: direction = %s, position = (%d,%d)\n", actual_direction_name, robot.position.x, robot.position.y);
+    }
+    
 }
 
 void print_separator()
