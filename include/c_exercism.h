@@ -26,5 +26,6 @@
 #include "c_exercism/isogram.h"
 #include "c_exercism/robot_simulator.h"
 #include "c_exercism/gigasecond.h"
+#include "c_exercism/triangle.h"
 
 #endif

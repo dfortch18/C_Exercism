@@ -454,6 +454,60 @@ int main()
 
         printf("Gigasecond after (%s): %s\n", date_formatted, output);
     }
+
+    print_separator();
+
+    triangle_t triangles[21] = {
+        {2, 2, 2},
+        {2, 3, 2},
+        {5, 4, 6},
+        {0, 0, 0},
+        {0.5, 0.5, 0.5},
+        {3, 4, 4},
+        {4, 4, 3},
+        {4, 3, 4},
+        {4, 4, 4},
+        {2, 3, 4},
+        {1, 1, 3},
+        {1, 3, 1},
+        {3, 1, 1},
+        {0.5, 0.4, 0.5},
+        {5, 4, 6},
+        {4, 4, 4},
+        {4, 4, 3},
+        {3, 4, 3},
+        {4, 3, 3},
+        {7, 3, 2},
+        {0.5, 0.4, 0.6}};
+
+    uint8_t triangle_checks[21] = {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2};
+
+    for (size_t i = 0; i < 21; i++)
+    {
+        triangle_t triangle = triangles[i];
+        char *triangle_type;
+        triangle_checker_t triangle_checker;
+        switch (triangle_checks[i])
+        {
+        case 0:
+            triangle_type = "Equilateral";
+            triangle_checker = triangle_is_equilateral;
+            break;
+        case 1:
+            triangle_type = "Isosceles";
+            triangle_checker = triangle_is_isosceles;
+            break;
+        case 2:
+            triangle_type = "Scalene";
+            triangle_checker = triangle_is_scalene;
+            break;
+        default:
+            printf("Invalid triangle checker");
+            exit(1);
+        }
+        printf("Is triangle %s (%f, %f, %f): %s\n", triangle_type, triangle.a, triangle.b, triangle.c, triangle_checker(triangle) ? "true" : "false");
+    }
+    
 }
 
 void print_separator()
@@ -472,12 +526,11 @@ static time_t construct_date(int year, int month, int day, int hour, int min, in
     static const time_t seconds_in_day = 86400;
     static const time_t days[2][12] = {
         {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334},
-        {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335}
-    };
+        {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335}};
 
     time_t days_since_epoch = (days_from_1ad(year) - days_from_1ad(1970)) + days[is_leap_year(year)][(month - 1)] + (day - 1);
 
     time_t result = (seconds_in_day * days_since_epoch) + (60 * ((hour * 60) + min) + sec);
-    
+
     return result;
 }
