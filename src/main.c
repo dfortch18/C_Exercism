@@ -663,6 +663,49 @@ int main()
         complex_t result = complex_exp(complex);
         printf("Exp of (%3.2f,%3.2f): (%3.2f,%3.2f)\n", complex.real, complex.imag, result.real, result.imag);
     }
+
+    print_separator();
+
+    // Sum of Multiples
+    const unsigned int multiples[16][5] = {
+        {3, 5},
+        {3, 5},
+        {3},
+        {3, 5},
+        {3, 5},
+        {3, 5},
+        {7, 13, 17},
+        {4, 6},
+        {5, 6, 8},
+        {5, 25},
+        {43, 47},
+        {1},
+        {0},
+        {0},
+        {3, 0},
+        {2, 3, 5, 7, 11}
+    };
+    const unsigned int limits[16] = {1, 4, 7, 10, 100, 1000, 20, 15, 150, 51, 10000, 100, 1000, 1, 4, 10000};
+
+    for (size_t i = 0; i < 16; i++)
+    {
+        char multiples_str[20] = "";
+        for (size_t j = 0; j < 5; j++)
+        {
+            if (multiples[i][j] == 0) continue;
+            char temp[10] = "";
+            sprintf(temp, "%d", multiples[i][j]);
+            strcat(multiples_str, temp);
+            if (multiples[i][j + 1] > 0)
+            {
+                strcat(multiples_str, ",");
+            }
+        }
+        
+        
+        printf("Sum of multiples (%s): %d\n", multiples_str, sum_of_multiples(multiples[i], 5, limits[i]));
+    }
+    
 }
 
 void print_separator()

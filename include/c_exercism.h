@@ -30,5 +30,6 @@
 #include "c_exercism/luhn.h"
 #include "c_exercism/allergies.h"
 #include "c_exercism/complex_numbers.h"
+#include "c_exercism/sum_of_multiples.h"
 
 #endif
