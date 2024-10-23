@@ -560,7 +560,7 @@ int main()
         }
         printf("Total allergens: %d\n", list.count);
     }
-    
+
     print_separator();
 
     // Complex numbers
@@ -571,30 +571,26 @@ int main()
         {{0.0, 1.0}, {0.0, 2.0}},
         {{1.0, 2.0}, {3.0, 4.0}},
         {{1.0, 2.0}, {5.0, 0.0}},
-        {{5.0, 0.0}, {1.0, 2.0}}
-    };
+        {{5.0, 0.0}, {1.0, 2.0}}};
     complex_t complex_sub_inputs[][2] = {
         {{1.0, 0.0}, {2.0, 0.0}},
         {{0.0, 1.0}, {0.0, 2.0}},
         {{1.0, 2.0}, {3.0, 4.0}},
         {{5.0, 7.0}, {4.0, 0.0}},
-        {{4.0, 0.0}, {5.0, 7.0}}
-    };
+        {{4.0, 0.0}, {5.0, 7.0}}};
     complex_t complex_mul_inputs[][2] = {
         {{1.0, 2.0}, {1.0, 2.0}},
         {{0.0, 1.0}, {0.0, 1.0}},
         {{0.0, 1.0}, {0.0, 2.0}},
         {{1.0, 2.0}, {3.0, 4.0}},
         {{2.0, 5.0}, {5.0, 0.0}},
-        {{5.0, 0.0}, {2.0, 5.0}}
-    };
+        {{5.0, 0.0}, {2.0, 5.0}}};
     complex_t complex_div_inputs[][2] = {
         {{1.0, 0.0}, {2.0, 0.0}},
         {{0.0, 1.0}, {0.0, 2.0}},
         {{1.0, 2.0}, {3.0, 4.0}},
         {{1.0, 100.0}, {10.0, 0.0}},
-        {{5.0, 0.0}, {1.0, 1.0}}
-    };
+        {{5.0, 0.0}, {1.0, 1.0}}};
     complex_t complex_abs_inputs[] = {{5.0, 0.0}, {-5.0, 0.0}, {0.0, 5.0}, {0.0, -5.0}, {3.0, 4.0}};
     complex_t complex_conjugate_inputs[] = {{5.0, 0.0}, {0.0, 5.0}, {1.0, 1.0}};
     complex_t complex_exp_inputs[] = {{0.0, 0.0}, {1.0, 0.0}, {log(2.0) / 2.0, acos(-1)}, {log(2.0) / 2.0, acos(-1) / 4.0}};
@@ -604,7 +600,7 @@ int main()
         complex_t complex = complex_real_inputs[i];
         printf("Real part of (%3.2f,%3.2f): %3.2f\n", complex.real, complex.imag, complex_real(complex));
     }
-    
+
     for (size_t i = 0; i < ARRAY_LENGTH(complex_imag_inputs); i++)
     {
         complex_t complex = complex_imag_inputs[i];
@@ -648,7 +644,6 @@ int main()
         complex_t complex = complex_abs_inputs[i];
         printf("Abs of (%3.2f,%3.2f): %3.2f\n", complex.real, complex.imag, complex_abs(complex));
     }
-    
 
     for (size_t i = 0; i < ARRAY_LENGTH(complex_conjugate_inputs); i++)
     {
@@ -683,8 +678,7 @@ int main()
         {0},
         {0},
         {3, 0},
-        {2, 3, 5, 7, 11}
-    };
+        {2, 3, 5, 7, 11}};
     const unsigned int limits[16] = {1, 4, 7, 10, 100, 1000, 20, 15, 150, 51, 10000, 100, 1000, 1, 4, 10000};
 
     for (size_t i = 0; i < 16; i++)
@@ -692,7 +686,8 @@ int main()
         char multiples_str[20] = "";
         for (size_t j = 0; j < 5; j++)
         {
-            if (multiples[i][j] == 0) continue;
+            if (multiples[i][j] == 0)
+                continue;
             char temp[10] = "";
             sprintf(temp, "%d", multiples[i][j]);
             strcat(multiples_str, temp);
@@ -701,11 +696,95 @@ int main()
                 strcat(multiples_str, ",");
             }
         }
-        
-        
+
         printf("Sum of multiples (%s): %d\n", multiples_str, sum_of_multiples(multiples[i], 5, limits[i]));
     }
-    
+
+    print_separator();
+
+    // Yacht
+    yacht_dice_t yacht_dices[29] = {
+        {{5, 5, 5, 5, 5}},
+        {{1, 3, 3, 2, 5}},
+        {{1, 1, 1, 3, 5}},
+        {{3, 1, 1, 5, 1}},
+        {{4, 3, 6, 5, 5}},
+        {{2, 3, 4, 5, 6}},
+        {{1, 4, 1, 4, 1}},
+        {{3, 3, 3, 3, 3}},
+        {{3, 3, 3, 3, 3}},
+        {{1, 5, 3, 5, 3}},
+        {{2, 3, 4, 5, 6}},
+        {{2, 2, 4, 4, 4}},
+        {{5, 3, 3, 5, 3}},
+        {{2, 2, 4, 4, 5}},
+        {{1, 4, 4, 4, 4}},
+        {{2, 2, 2, 2, 2}},
+        {{6, 6, 4, 6, 6}},
+        {{3, 3, 3, 3, 3}},
+        {{3, 3, 3, 5, 5}},
+        {{3, 5, 4, 1, 2}},
+        {{1, 2, 3, 4, 5}},
+        {{1, 1, 2, 3, 4}},
+        {{1, 2, 3, 4, 6}},
+        {{1, 1, 3, 4, 5}},
+        {{4, 6, 2, 5, 3}},
+        {{6, 5, 4, 3, 2}},
+        {{6, 5, 4, 3, 1}},
+        {{3, 3, 5, 6, 6}},
+        {{2, 2, 2, 2, 2}}};
+    yacht_mode_t yacht_modes[29] = {
+        YACHT_YACHT_MODE,
+        YACHT_YACHT_MODE,
+        YACHT_ONES_MODE,
+        YACHT_ONES_MODE,
+        YACHT_ONES_MODE,
+        YACHT_TWOS_MODE,
+        YACHT_FOURS_MODE,
+        YACHT_THREES_MODE,
+        YACHT_FIVES_MODE,
+        YACHT_FIVES_MODE,
+        YACHT_SIXES_MODE,
+        YACHT_FULL_HOUSE_MODE,
+        YACHT_FULL_HOUSE_MODE,
+        YACHT_FULL_HOUSE_MODE,
+        YACHT_FULL_HOUSE_MODE,
+        YACHT_FULL_HOUSE_MODE,
+        YACHT_FOUR_OF_A_KIND_MODE,
+        YACHT_FOUR_OF_A_KIND_MODE,
+        YACHT_FOUR_OF_A_KIND_MODE,
+        YACHT_LITTLE_STRAIGHT_MODE,
+        YACHT_BIG_STRAIGHT_MODE,
+        YACHT_LITTLE_STRAIGHT_MODE,
+        YACHT_LITTLE_STRAIGHT_MODE,
+        YACHT_LITTLE_STRAIGHT_MODE,
+        YACHT_BIG_STRAIGHT_MODE,
+        YACHT_LITTLE_STRAIGHT_MODE,
+        YACHT_BIG_STRAIGHT_MODE,
+        YACHT_CHOICE_MODE,
+        YACHT_CHOICE_MODE};
+
+    for (size_t i = 0; i < 29; i++)
+    {
+        yacht_dice_t dice = yacht_dices[i];
+        yacht_mode_t mode = yacht_modes[i];
+        const char *mode_name = yacht_mode_name(mode);
+        char dice_str[10] = {0};
+
+        for (size_t i = 0; i < YACHT_DICE_COUNT; i++)
+        {
+            char temp[2] = {0};
+            sprintf(temp, "%d", dice.faces[i]);
+            strcat(dice_str, temp);
+            if (i + 1 != YACHT_DICE_COUNT)
+            {
+                strcat(dice_str, ",");
+            }
+        }
+        dice_str[9] = '\0';
+        
+        printf("Dice faces (%s) score in mode %s: %d\n", dice_str, mode_name, yacht_score(dice, mode));
+    }
 }
 
 void print_separator()
