@@ -702,6 +702,26 @@ int main()
 
     print_separator();
 
+    // Nucleotide Count
+    const char *nucleotide_count_inputs[] = {
+        "",
+        "G",
+        "GGGGGGG",
+        "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC",
+        "AGXXACT"
+    };
+
+    for (size_t i = 0; i < ARRAY_LENGTH(nucleotide_count_inputs); i++)
+    {
+        const char *input = nucleotide_count_inputs[i];
+        char *result = nucleotide_count(input);
+        printf("Nucleotide count (%s): %s\n", input, result);
+        free(result);
+    }
+    
+
+    print_separator();
+
     // Yacht
     yacht_dice_t yacht_dices[29] = {
         {{5, 5, 5, 5, 5}},
