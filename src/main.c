@@ -12,6 +12,8 @@ static inline time_t days_from_1ad(int);
 
 static time_t construct_date(int, int, int, int, int, int);
 
+static void print_triplets(const triplets_t *, bool);
+
 int main()
 {
     // Print hello world
@@ -708,8 +710,7 @@ int main()
         "G",
         "GGGGGGG",
         "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC",
-        "AGXXACT"
-    };
+        "AGXXACT"};
 
     for (size_t i = 0; i < ARRAY_LENGTH(nucleotide_count_inputs); i++)
     {
@@ -718,7 +719,6 @@ int main()
         printf("Nucleotide count (%s): %s\n", input, result);
         free(result);
     }
-    
 
     print_separator();
 
@@ -802,8 +802,22 @@ int main()
             }
         }
         dice_str[9] = '\0';
-        
+
         printf("Dice faces (%s) score in mode %s: %d\n", dice_str, mode_name, yacht_score(dice, mode));
+    }
+
+    print_separator();
+
+    // Pythagorean Triplet
+    uint16_t pythagorean_triplet_sum[] = {12, 108, 1000, 1001, 90, 840, 30000};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(pythagorean_triplet_sum); i++)
+    {
+        triplets_t *triplets = triplets_with_sum(pythagorean_triplet_sum[i]);
+
+        printf("Triplets for (%d): ", pythagorean_triplet_sum[i]);
+        print_triplets(triplets, true);
+        free_triplets(triplets);
     }
 }
 
@@ -830,4 +844,32 @@ static time_t construct_date(int year, int month, int day, int hour, int min, in
     time_t result = (seconds_in_day * days_since_epoch) + (60 * ((hour * 60) + min) + sec);
 
     return result;
+}
+
+static void print_triplets(const triplets_t *triplets, bool endl)
+{
+    if (triplets->count == 0)
+    {
+        printf("[]");
+    }
+    else
+    {
+        printf("[");
+
+        for (size_t i = 0; i < triplets->count; i++)
+        {
+            printf("(%d, %d, %d)", triplets->triplets[i].a, triplets->triplets[i].b, triplets->triplets[i].c);
+            if (i < triplets->count - 1)
+            {
+                printf(", ");
+            }
+        }
+
+        printf("]");
+    }
+
+    if (endl)
+    {
+        printf("\n");
+    }
 }
