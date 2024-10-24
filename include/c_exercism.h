@@ -33,6 +33,7 @@
 #include "c_exercism/sum_of_multiples.h"
 #include "c_exercism/nucleotide_count.h"
 #include "c_exercism/yacht.h"
+#include "c_exercism/phone_number.h"
 #include "c_exercism/pythagorean_triplet.h"
 
 #endif

@@ -808,6 +808,36 @@ int main()
 
     print_separator();
 
+    // Phone Number
+    const char *phone_number_inputs[] = {
+        "(223) 456-7890",
+        "223.456.7890",
+        "223 456   7890   ",
+        "123456789",
+        "22234567890",
+        "12234567890",
+        "+1 (223) 456-7890",
+        "321234567890",
+        "523-abc-7890",
+        "523-@:!-7890",
+        "(023) 456-7890",
+        "(123) 456-7890",
+        "(223) 056-7890",
+        "(223) 156-7890",
+        "1 (023) 456-7890",
+        "1 (123) 456-7890",
+        "1 (223) 056-7890",
+        "1 (123) 156-7890"};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(phone_number_inputs); i++)
+    {
+        const char *phone_number = phone_number_inputs[i];
+        printf("Phone number cleaned (%s): %s\n", phone_number, phone_number_clean(phone_number));
+    }
+    
+
+    print_separator();
+
     // Pythagorean Triplet
     uint16_t pythagorean_triplet_sum[] = {12, 108, 1000, 1001, 90, 840, 30000};
 
