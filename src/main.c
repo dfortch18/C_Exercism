@@ -14,6 +14,8 @@ static time_t construct_date(int, int, int, int, int, int);
 
 static void print_triplets(const triplets_t *, bool);
 
+static void print_proteins(const proteins_t, bool);
+
 int main()
 {
     // Print hello world
@@ -834,7 +836,6 @@ int main()
         const char *phone_number = phone_number_inputs[i];
         printf("Phone number cleaned (%s): %s\n", phone_number, phone_number_clean(phone_number));
     }
-    
 
     print_separator();
 
@@ -849,6 +850,52 @@ int main()
         print_triplets(triplets, true);
         free_triplets(triplets);
     }
+
+    print_separator();
+
+    // Protein Translation
+    const char *const protein_translation_rnas[] = {
+        "",
+        "AUG",
+        "UUU",
+        "UUC",
+        "UUA",
+        "UUG",
+        "UCU",
+        "UCC",
+        "UCA",
+        "UCG",
+        "UAU",
+        "UAC",
+        "UGU",
+        "UGG",
+        "UAA",
+        "UAG",
+        "UGA",
+        "UUUUUU",
+        "UUAUUG",
+        "AUGUUUUGG",
+        "UAGUGG",
+        "UGGUAG",
+        "AUGUUUUAA",
+        "UGGUAGUGG",
+        "UGGUGUUAUUAAUGGUUU",
+        "AAA",
+        "XYZ",
+        "AUGU",
+        "UUCUUCUAAUGGU"};
+
+    for (size_t i = 0; i < ARRAY_LENGTH(protein_translation_rnas); i++)
+    {
+        const char *rna = protein_translation_rnas[i];
+
+        proteins_t proteins = protein_translation(rna);
+        
+        printf("Protein translation for rna (%s): ", rna);
+    
+        print_proteins(proteins, true);
+    }
+    
 }
 
 void print_separator()
@@ -894,6 +941,34 @@ static void print_triplets(const triplets_t *triplets, bool endl)
                 printf(", ");
             }
         }
+
+        printf("]");
+    }
+
+    if (endl)
+    {
+        printf("\n");
+    }
+}
+
+static void print_proteins(const proteins_t proteins, bool endl)
+{
+    if (proteins.count == 0)
+    {
+        printf("[]");
+    }
+    else
+    {
+        printf("[");
+
+    for (size_t i = 0; i < proteins.count; i++)
+    {
+        printf("%s", protein_name(proteins.proteins[i]));
+        if (i < proteins.count - 1)
+        {
+            printf(", ");
+        }
+    }
 
         printf("]");
     }

@@ -35,5 +35,6 @@
 #include "c_exercism/yacht.h"
 #include "c_exercism/phone_number.h"
 #include "c_exercism/pythagorean_triplet.h"
+#include "c_exercism/protein_translation.h"
 
 #endif
